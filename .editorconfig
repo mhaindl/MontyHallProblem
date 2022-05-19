@@ -1,0 +1,1833 @@
+﻿# This is mostly (but not completely) based on the official Microsoft Coding Guidelines:
+# https://github.com/dotnet/runtime/blob/main/docs/coding-guidelines/coding-style.md
+
+# Remove the line below if you want to inherit .editorconfig settings from higher directories.
+root = true
+
+# General documentation:
+# https://docs.microsoft.com/en-us/visualstudio/ide/create-portable-custom-editor-options
+# https://docs.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#code-analysis-properties
+
+[*]
+# Use tabs everywhere.
+indent_style = tab
+
+# New line preferences
+charset = utf-8-bom
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# Checks for possible null reference exceptions which are only reported by SonarQube when this code already is in master.
+# (This rule mysteriously doesn't work when it's under the [*.cs] entry. For more information look at the other ReSharper settings below.)
+# https://www.jetbrains.com/help/rider/PossibleNullReferenceException.html
+resharper_possible_null_reference_exception_highlighting = error
+
+# Indentation of XML-based files
+[*.{csproj,vcxproj,resx,xml,config}]
+indent_size = 2
+
+# Indentation of C++, JSON, PowerShell, SQL and XAML files
+[*.{cpp,c,h,hpp,json,ps1,sql,psql,xaml}]
+indent_size = 4
+
+# bat files apparently can't run when utf-8-bom.
+[*.bat]
+charset = utf-8
+
+# Generated code
+[*.{generated,g}.cs]
+generated_code = true
+
+
+# C# files
+[*.cs]
+indent_size = 4
+
+######################################################################
+# This section was exported from Visual Studio and manually adapted. #
+######################################################################
+
+#### .NET Coding Conventions ####
+
+# Organize usings
+dotnet_separate_import_directive_groups = false
+dotnet_sort_system_directives_first = true
+file_header_template = unset
+
+# this. and Me. preferences
+dotnet_style_qualification_for_event = false:error
+dotnet_style_qualification_for_field = false:error
+dotnet_style_qualification_for_method = false:error
+dotnet_style_qualification_for_property = false:error
+
+# Language keywords vs BCL types preferences
+dotnet_style_predefined_type_for_locals_parameters_members = true:error
+dotnet_style_predefined_type_for_member_access = true:error
+
+# Parentheses preferences
+dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity:warning
+dotnet_style_parentheses_in_other_binary_operators = always_for_clarity:silent
+dotnet_style_parentheses_in_other_operators = never_if_unnecessary:warning
+dotnet_style_parentheses_in_relational_binary_operators = always_for_clarity:silent
+
+# Modifier preferences
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:error
+
+# Expression-level preferences
+dotnet_style_coalesce_expression = true:warning
+dotnet_style_collection_initializer = true:warning
+dotnet_style_explicit_tuple_names = true:error
+# -> Temporarily disabled because (starting with VS 2019 16.11.0) files in the root of SDK-style projects are incorrectly reported as a violation (but without a fix).
+dotnet_style_namespace_match_folder = true:none
+dotnet_style_null_propagation = true:warning
+dotnet_style_object_initializer = true:warning
+dotnet_style_operator_placement_when_wrapping = beginning_of_line
+dotnet_style_prefer_auto_properties = true:warning
+dotnet_style_prefer_compound_assignment = true:error
+dotnet_style_prefer_conditional_expression_over_assignment = true:suggestion
+dotnet_style_prefer_conditional_expression_over_return = true:none
+dotnet_style_prefer_inferred_anonymous_type_member_names = true:suggestion
+dotnet_style_prefer_inferred_tuple_names = true:suggestion
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true:warning
+dotnet_style_prefer_simplified_boolean_expressions = true:warning
+dotnet_style_prefer_simplified_interpolation = true:warning
+
+# Field preferences
+dotnet_style_readonly_field = true:warning
+
+# Parameter preferences
+dotnet_code_quality_unused_parameters = all:warning
+
+# Suppression preferences
+dotnet_remove_unnecessary_suppression_exclusions = warning
+
+#### C# Coding Conventions ####
+
+# var preferences
+csharp_style_var_elsewhere = true:warning
+csharp_style_var_for_built_in_types = true:suggestion
+csharp_style_var_when_type_is_apparent = true:warning
+
+# Expression-bodied members
+csharp_style_expression_bodied_accessors = true:suggestion
+csharp_style_expression_bodied_constructors = true:suggestion
+csharp_style_expression_bodied_indexers = true:suggestion
+csharp_style_expression_bodied_lambdas = true:suggestion
+csharp_style_expression_bodied_local_functions = true:suggestion
+csharp_style_expression_bodied_methods = true:suggestion
+csharp_style_expression_bodied_operators = true:suggestion
+csharp_style_expression_bodied_properties = true:suggestion
+
+# Pattern matching preferences
+csharp_style_pattern_matching_over_as_with_null_check = true:error
+csharp_style_pattern_matching_over_is_with_cast_check = true:error
+csharp_style_prefer_not_pattern = true:warning
+csharp_style_prefer_pattern_matching = true:warning
+csharp_style_prefer_switch_expression = true:warning
+
+# Null-checking preferences
+csharp_style_conditional_delegate_call = true:warning
+
+# Modifier preferences
+csharp_prefer_static_local_function = true:suggestion
+csharp_preferred_modifier_order = public,private,protected,internal,static,async,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile:error
+
+# Code-block preferences
+csharp_prefer_braces = false:none
+csharp_prefer_simple_using_statement = true:warning
+
+# Expression-level preferences
+csharp_prefer_simple_default_expression = true:error
+csharp_style_deconstructed_variable_declaration = true:suggestion
+csharp_style_implicit_object_creation_when_type_is_apparent = true:warning
+csharp_style_inlined_variable_declaration = true:warning
+csharp_style_pattern_local_over_anonymous_function = true:warning
+csharp_style_prefer_index_operator = true:suggestion
+csharp_style_prefer_range_operator = true:suggestion
+csharp_style_throw_expression = true:warning
+csharp_style_unused_value_assignment_preference = discard_variable:warning
+csharp_style_unused_value_expression_statement_preference = discard_variable:none
+
+# 'using' directive preferences
+csharp_using_directive_placement = outside_namespace:error
+
+#### C# Formatting Rules ####
+
+# New line preferences
+csharp_new_line_before_catch = true
+csharp_new_line_before_else = true
+csharp_new_line_before_finally = true
+csharp_new_line_before_members_in_anonymous_types = false
+csharp_new_line_before_members_in_object_initializers = false
+csharp_new_line_before_open_brace = all
+csharp_new_line_between_query_expression_clauses = false
+
+# Indentation preferences
+csharp_indent_block_contents = true
+csharp_indent_braces = false
+csharp_indent_case_contents = true
+csharp_indent_case_contents_when_block = false
+csharp_indent_labels = no_change
+csharp_indent_switch_labels = true
+
+# Space preferences
+csharp_space_after_cast = false
+csharp_space_after_colon_in_inheritance_clause = true
+csharp_space_after_comma = true
+csharp_space_after_dot = false
+csharp_space_after_keywords_in_control_flow_statements = true
+csharp_space_after_semicolon_in_for_statement = true
+csharp_space_around_binary_operators = before_and_after
+csharp_space_around_declaration_statements = ignore
+csharp_space_before_colon_in_inheritance_clause = true
+csharp_space_before_comma = false
+csharp_space_before_dot = false
+csharp_space_before_open_square_brackets = false
+csharp_space_before_semicolon_in_for_statement = false
+csharp_space_between_empty_square_brackets = false
+csharp_space_between_method_call_empty_parameter_list_parentheses = false
+csharp_space_between_method_call_name_and_opening_parenthesis = false
+csharp_space_between_method_call_parameter_list_parentheses = false
+csharp_space_between_method_declaration_empty_parameter_list_parentheses = false
+csharp_space_between_method_declaration_name_and_open_parenthesis = false
+csharp_space_between_method_declaration_parameter_list_parentheses = false
+csharp_space_between_parentheses = false
+csharp_space_between_square_brackets = false
+
+# Wrapping preferences
+csharp_preserve_single_line_blocks = true
+csharp_preserve_single_line_statements = false
+
+#### Naming styles ####
+
+# Naming rules
+
+dotnet_naming_rule.interface_should_be_begins_with_i.severity = error
+dotnet_naming_rule.interface_should_be_begins_with_i.symbols = interface
+dotnet_naming_rule.interface_should_be_begins_with_i.style = begins_with_i
+
+dotnet_naming_rule.all_except_field_and_parameter_should_be_pascal_case.severity = error
+dotnet_naming_rule.all_except_field_and_parameter_should_be_pascal_case.symbols = all_except_field_and_parameter
+dotnet_naming_rule.all_except_field_and_parameter_should_be_pascal_case.style = pascal_case
+
+dotnet_naming_rule.public_field_should_be_pascal_case.severity = error
+dotnet_naming_rule.public_field_should_be_pascal_case.symbols = public_field
+dotnet_naming_rule.public_field_should_be_pascal_case.style = pascal_case
+
+dotnet_naming_rule.parameter_should_be_camel_case.severity = error
+dotnet_naming_rule.parameter_should_be_camel_case.symbols = parameter
+dotnet_naming_rule.parameter_should_be_camel_case.style = camel_case
+
+dotnet_naming_rule.non_public_field_should_be_camel_case_begins_with_underscore.severity = error
+dotnet_naming_rule.non_public_field_should_be_camel_case_begins_with_underscore.symbols = non_public_field
+dotnet_naming_rule.non_public_field_should_be_camel_case_begins_with_underscore.style = camel_case_begins_with_underscore
+
+dotnet_naming_rule.local_variable_should_be_camel_case.severity = error
+dotnet_naming_rule.local_variable_should_be_camel_case.symbols = local_variable
+dotnet_naming_rule.local_variable_should_be_camel_case.style = camel_case
+
+dotnet_naming_rule.async_methods_should_be_ends_with_async.severity = error
+dotnet_naming_rule.async_methods_should_be_ends_with_async.symbols = async_methods
+dotnet_naming_rule.async_methods_should_be_ends_with_async.style = ends_with_async
+
+# Symbol specifications
+
+dotnet_naming_symbols.interface.applicable_kinds = interface
+dotnet_naming_symbols.interface.applicable_accessibilities = *
+dotnet_naming_symbols.interface.required_modifiers = 
+
+dotnet_naming_symbols.public_field.applicable_kinds = field
+dotnet_naming_symbols.public_field.applicable_accessibilities = public, internal, protected_internal
+dotnet_naming_symbols.public_field.required_modifiers = 
+
+dotnet_naming_symbols.non_public_field.applicable_kinds = field
+dotnet_naming_symbols.non_public_field.applicable_accessibilities = private, protected, private_protected
+dotnet_naming_symbols.non_public_field.required_modifiers = 
+
+dotnet_naming_symbols.parameter.applicable_kinds = parameter
+dotnet_naming_symbols.parameter.applicable_accessibilities = *
+dotnet_naming_symbols.parameter.required_modifiers = 
+
+dotnet_naming_symbols.all_except_field_and_parameter.applicable_kinds = namespace, property, event, type_parameter, class, struct, interface, enum, delegate, method, local_function
+dotnet_naming_symbols.all_except_field_and_parameter.applicable_accessibilities = *
+dotnet_naming_symbols.all_except_field_and_parameter.required_modifiers = 
+
+dotnet_naming_symbols.local_variable.applicable_kinds = local
+dotnet_naming_symbols.local_variable.applicable_accessibilities = local
+dotnet_naming_symbols.local_variable.required_modifiers = 
+
+dotnet_naming_symbols.async_methods.applicable_kinds = method, local_function
+dotnet_naming_symbols.async_methods.applicable_accessibilities = *
+dotnet_naming_symbols.async_methods.required_modifiers = async
+
+# Naming styles
+
+dotnet_naming_style.pascal_case.required_prefix = 
+dotnet_naming_style.pascal_case.required_suffix = 
+dotnet_naming_style.pascal_case.word_separator = 
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+dotnet_naming_style.begins_with_i.required_prefix = I
+dotnet_naming_style.begins_with_i.required_suffix = 
+dotnet_naming_style.begins_with_i.word_separator = 
+dotnet_naming_style.begins_with_i.capitalization = pascal_case
+
+dotnet_naming_style.camel_case.required_prefix = 
+dotnet_naming_style.camel_case.required_suffix = 
+dotnet_naming_style.camel_case.word_separator = 
+dotnet_naming_style.camel_case.capitalization = camel_case
+
+dotnet_naming_style.camel_case_begins_with_underscore.required_prefix = _
+dotnet_naming_style.camel_case_begins_with_underscore.required_suffix = 
+dotnet_naming_style.camel_case_begins_with_underscore.word_separator = 
+dotnet_naming_style.camel_case_begins_with_underscore.capitalization = camel_case
+
+dotnet_naming_style.ends_with_async.required_prefix = 
+dotnet_naming_style.ends_with_async.required_suffix = Async
+dotnet_naming_style.ends_with_async.word_separator = 
+# If this would be defined as pascal_case, pascal_case would be disabled too in tests (where async_methods_should_be_ends_with_async.severity = none).
+dotnet_naming_style.ends_with_async.capitalization = 
+
+
+##########################################
+# Everything below was created manually. #
+##########################################
+
+#################
+# IDExxxx rules #
+#################
+# Manual enabling of all serverities. Without this, some rules are only IntelliSense infos and not reported in the build.
+# These severities can have 0, 1 or multiple mappings to the exported rules above. It's important that these serverities are matching each other to avoid phantom errors.
+# The documentation is here:
+# https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/
+# https://github.com/dotnet/roslyn/blob/main/src/Analyzers/Core/Analyzers/IDEDiagnosticIds.cs
+# https://github.com/dotnet/roslyn/blob/main/src/Analyzers/Core/Analyzers/EnforceOnBuildValues.cs
+
+# Simplify name
+#     None
+dotnet_diagnostic.IDE0001.severity = error
+# Simplify member access
+#     None
+dotnet_diagnostic.IDE0002.severity = error
+# Remove this or Me qualification
+#     dotnet_style_qualification_for_event
+#     dotnet_style_qualification_for_field
+#     dotnet_style_qualification_for_method
+#     dotnet_style_qualification_for_property
+dotnet_diagnostic.IDE0003.severity = error
+# Remove unnecessary cast
+#     None
+dotnet_diagnostic.IDE0004.severity = warning
+# Remove unnecessary import
+#     None
+dotnet_diagnostic.IDE0005.severity = warning
+# Use var instead of explicit type
+#     csharp_style_var_elsewhere
+#     csharp_style_var_for_built_in_types
+#     csharp_style_var_when_type_is_apparent
+# -> Cannot be defined because of different scopes with different severities.
+# dotnet_diagnostic.IDE0007.severity = warning
+# Use explicit type instead of var
+#     csharp_style_var_elsewhere
+#     csharp_style_var_for_built_in_types
+#     csharp_style_var_when_type_is_apparent
+# -> Cannot be defined because of different scopes with different severities.
+# dotnet_diagnostic.IDE0008.severity = warning
+# Add this or Me qualification
+#     dotnet_style_qualification_for_event
+#     dotnet_style_qualification_for_field
+#     dotnet_style_qualification_for_method
+#     dotnet_style_qualification_for_property
+dotnet_diagnostic.IDE0009.severity = error
+# Add missing cases to switch statement
+#     None
+dotnet_diagnostic.IDE0010.severity = none
+# Add braces
+#     csharp_prefer_braces
+dotnet_diagnostic.IDE0011.severity = none
+# Use throw expression
+#     csharp_style_throw_expression
+dotnet_diagnostic.IDE0016.severity = warning
+# Use object initializers
+#     dotnet_style_object_initializer
+dotnet_diagnostic.IDE0017.severity = warning
+# Inline variable declaration
+#     csharp_style_inlined_variable_declaration
+dotnet_diagnostic.IDE0018.severity = warning
+# Use pattern matching to avoid as followed by a null check
+#     csharp_style_pattern_matching_over_as_with_null_check
+dotnet_diagnostic.IDE0019.severity = error
+# Use pattern matching to avoid is check followed by a cast (with variable)
+#     csharp_style_pattern_matching_over_is_with_cast_check
+dotnet_diagnostic.IDE0020.severity = error
+# Use expression body for constructors
+#     csharp_style_expression_bodied_constructors
+dotnet_diagnostic.IDE0021.severity = suggestion
+# Use expression body for methods
+#     csharp_style_expression_bodied_methods
+dotnet_diagnostic.IDE0022.severity = suggestion
+# Use expression body for conversion operators
+#     csharp_style_expression_bodied_operators
+dotnet_diagnostic.IDE0023.severity = suggestion
+# Use expression body for operators
+#     csharp_style_expression_bodied_operators
+dotnet_diagnostic.IDE0024.severity = suggestion
+# Use expression body for properties
+#     csharp_style_expression_bodied_properties
+dotnet_diagnostic.IDE0025.severity = suggestion
+# Use expression body for indexers
+#     csharp_style_expression_bodied_indexers
+dotnet_diagnostic.IDE0026.severity = suggestion
+# Use expression body for accessors
+#     csharp_style_expression_bodied_accessors
+dotnet_diagnostic.IDE0027.severity = suggestion
+# Use collection initializers
+#     dotnet_style_collection_initializer
+dotnet_diagnostic.IDE0028.severity = warning
+# Use coalesce expression (non-nullable types)
+#     dotnet_style_coalesce_expression
+dotnet_diagnostic.IDE0029.severity = warning
+# Use coalesce expression (nullable types)
+#     dotnet_style_coalesce_expression
+dotnet_diagnostic.IDE0030.severity = warning
+# Use null propagation
+#     dotnet_style_null_propagation
+dotnet_diagnostic.IDE0031.severity = warning
+# Use auto property
+#     dotnet_style_prefer_auto_properties
+dotnet_diagnostic.IDE0032.severity = warning
+# Use explicitly provided tuple name
+#     dotnet_style_explicit_tuple_names
+dotnet_diagnostic.IDE0033.severity = error
+# Simplify default expression
+#     csharp_prefer_simple_default_expression
+dotnet_diagnostic.IDE0034.severity = error
+# Remove unreachable code
+#     None
+dotnet_diagnostic.IDE0035.severity = warning
+# Order modifiers
+#     csharp_preferred_modifier_order
+#     visual_basic_preferred_modifier_order
+dotnet_diagnostic.IDE0036.severity = error
+# Use inferred member name
+#     dotnet_style_prefer_inferred_tuple_names
+#     dotnet_style_prefer_inferred_anonymous_type_member_names
+dotnet_diagnostic.IDE0037.severity = suggestion
+# Use pattern matching to avoid is check followed by a cast (without variable)
+#     csharp_style_pattern_matching_over_is_with_cast_check
+dotnet_diagnostic.IDE0038.severity = error
+# Use local function instead of lambda
+#     csharp_style_pattern_local_over_anonymous_function
+dotnet_diagnostic.IDE0039.severity = warning
+# Add accessibility modifiers
+#     dotnet_style_require_accessibility_modifiers
+dotnet_diagnostic.IDE0040.severity = error
+# Use is null check
+#     dotnet_style_prefer_is_null_check_over_reference_equality_method
+dotnet_diagnostic.IDE0041.severity = warning
+# Deconstruct variable declaration
+#     csharp_style_deconstructed_variable_declaration
+dotnet_diagnostic.IDE0042.severity = suggestion
+# Validate arguments in format string
+#     None
+dotnet_diagnostic.IDE0043.severity = warning
+# Add readonly modifier
+#     dotnet_style_readonly_field
+dotnet_diagnostic.IDE0044.severity = warning
+# Use conditional expression for assignment
+#     dotnet_style_prefer_conditional_expression_over_assignment
+dotnet_diagnostic.IDE0045.severity = suggestion
+# Use conditional expression for return
+#     dotnet_style_prefer_conditional_expression_over_return
+# -> Disabled because it's too noisy and too irrelevant.
+dotnet_diagnostic.IDE0046.severity = none
+# Remove unnecessary parentheses
+#     dotnet_style_parentheses_in_arithmetic_binary_operators
+#     dotnet_style_parentheses_in_other_binary_operators
+#     dotnet_style_parentheses_in_other_operators
+#     dotnet_style_parentheses_in_relational_binary_operators
+# -> Cannot be defined because of different scopes with different severities.
+# dotnet_diagnostic.IDE0047.severity = warning
+# Add parentheses for clarity
+#     dotnet_style_parentheses_in_arithmetic_binary_operators
+#     dotnet_style_parentheses_in_other_binary_operators
+#     dotnet_style_parentheses_in_other_operators
+#     dotnet_style_parentheses_in_relational_binary_operators
+# -> Cannot be defined because of different scopes with different severities.
+# dotnet_diagnostic.IDE0048.severity = error
+# Use language keywords instead of framework type names for type references
+#     dotnet_style_predefined_type_for_locals_parameters_members
+#     dotnet_style_predefined_type_for_member_access
+dotnet_diagnostic.IDE0049.severity = error
+# Convert anonymous type to tuple
+#     None
+dotnet_diagnostic.IDE0050.severity = suggestion
+# Remove unused private member
+#     None
+dotnet_diagnostic.IDE0051.severity = warning
+# Remove unread private member
+#     None
+dotnet_diagnostic.IDE0052.severity = warning
+# Use expression body for lambdas
+#     csharp_style_expression_bodied_lambdas
+dotnet_diagnostic.IDE0053.severity = suggestion
+# Use compound assignment
+#     dotnet_style_prefer_compound_assignment
+dotnet_diagnostic.IDE0054.severity = error
+# Fix formatting
+#     Some but not all of the rules are here: https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/formatting-rules
+dotnet_diagnostic.IDE0055.severity = warning
+# Use index operator
+#     csharp_style_prefer_index_operator
+dotnet_diagnostic.IDE0056.severity = suggestion
+# Use range operator
+#     csharp_style_prefer_range_operator
+dotnet_diagnostic.IDE0057.severity = suggestion
+# Remove unused expression value
+#     csharp_style_unused_value_expression_statement_preference
+#     visual_basic_style_unused_value_expression_statement_preference
+dotnet_diagnostic.IDE0058.severity = none
+# Remove unnecessary value assignment
+#     csharp_style_unused_value_assignment_preference
+#     visual_basic_style_unused_value_assignment_preference
+dotnet_diagnostic.IDE0059.severity = warning
+# Remove unused parameter
+#     dotnet_code_quality_unused_parameters
+dotnet_diagnostic.IDE0060.severity = warning
+# Use expression body for local functions
+#     csharp_style_expression_bodied_local_functions
+dotnet_diagnostic.IDE0061.severity = suggestion
+# Make local function static
+#     csharp_prefer_static_local_function
+dotnet_diagnostic.IDE0062.severity = suggestion
+# Use simple using statement
+#     csharp_prefer_simple_using_statement
+dotnet_diagnostic.IDE0063.severity = warning
+# Make struct fields writable
+#     None
+dotnet_diagnostic.IDE0064.severity = warning
+# using directive placement
+#     csharp_using_directive_placement
+dotnet_diagnostic.IDE0065.severity = error
+# Use switch expression
+#     csharp_style_prefer_switch_expression
+dotnet_diagnostic.IDE0066.severity = warning
+# Use System.HashCode.Combine
+#     None
+dotnet_diagnostic.IDE0070.severity = warning
+# Simplify interpolation
+#     dotnet_style_prefer_simplified_interpolation
+dotnet_diagnostic.IDE0071.severity = warning
+# Add missing cases to switch expression
+#     None
+dotnet_diagnostic.IDE0072.severity = none
+# Use file header
+#     None
+dotnet_diagnostic.IDE0073.severity = none
+# Use coalesce compound assignment
+#     dotnet_style_prefer_compound_assignment
+dotnet_diagnostic.IDE0074.severity = error
+# Simplify conditional expression
+#     dotnet_style_prefer_simplified_boolean_expressions
+dotnet_diagnostic.IDE0075.severity = warning
+# Remove invalid global SuppressMessageAttribute
+#     None
+dotnet_diagnostic.IDE0076.severity = warning
+# Avoid legacy format target in global SuppressMessageAttribute
+#     None
+dotnet_diagnostic.IDE0077.severity = warning
+# Use pattern matching
+#     csharp_style_prefer_pattern_matching
+dotnet_diagnostic.IDE0078.severity = warning
+# Remove unnecessary suppression
+#     dotnet_remove_unnecessary_suppression_exclusions
+dotnet_diagnostic.IDE0079.severity = warning
+# Remove unnecessary suppression operator
+#     None
+dotnet_diagnostic.IDE0080.severity = error
+# Remove ByVal (VB.NET only)
+#     None
+dotnet_diagnostic.IDE0081.severity = none
+# Convert typeof to nameof
+#     None
+dotnet_diagnostic.IDE0082.severity = warning
+# Use pattern matching (not operator)
+#     csharp_style_prefer_not_pattern
+dotnet_diagnostic.IDE0083.severity = warning
+# Use pattern matching (IsNot operator) (VB.NET only)
+#     visual_basic_style_prefer_isnot_expression
+dotnet_diagnostic.IDE0084.severity = none
+# Simplify new expression
+#     csharp_style_implicit_object_creation_when_type_is_apparent
+dotnet_diagnostic.IDE0090.severity = warning
+# Remove unnecessary equality operator
+#     None
+dotnet_diagnostic.IDE0100.severity = error
+# Remove unnecessary discard
+#     None
+dotnet_diagnostic.IDE0110.severity = warning
+# Simplify LINQ expression
+#     None
+dotnet_diagnostic.IDE0120.severity = error
+# Match folder and namespace
+#     dotnet_style_namespace_match_folder
+# -> Temporarily disabled because (starting with VS 2019 16.11.0) files in the root of SDK-style projects are incorrectly reported as a violation (but without a fix).
+dotnet_diagnostic.IDE0130.severity = none
+# Simplify object creation (VB.NET only)
+#     visual_basic_style_prefer_simplified_object_creation
+dotnet_diagnostic.IDE0140.severity = none
+# Use conditional delegate call
+#     csharp_style_conditional_delegate_call
+dotnet_diagnostic.IDE1005.severity = warning
+# Naming styles
+#     dotnet_naming_*
+dotnet_diagnostic.IDE1006.severity = error
+
+
+#####################################################
+# Asyncxxx/CAxxxx/ILxxxx/CSxxxx/SAxxxx/SXxxxx rules #
+#####################################################
+# The documentation is here:
+# Asyncxxx
+# https://marketplace.visualstudio.com/items?itemName=SemihOkur.AsyncFixer
+# CAxxxx/ILxxxx
+# https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/
+# https://github.com/dotnet/roslyn-analyzers/blob/main/src/Utilities/Compiler/DiagnosticCategoryAndIdRanges.txt
+# https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-quality-rule-options
+# https://github.com/dotnet/roslyn-analyzers/blob/main/src/NetAnalyzers/Microsoft.CodeAnalysis.NetAnalyzers.md
+# https://github.com/dotnet/roslyn-analyzers/blob/main/src/NetAnalyzers/Core/AnalyzerReleases.Shipped.md
+# https://docs.microsoft.com/en-us/visualstudio/code-quality/fxcop-unported-rules-may-get-ported
+# https://docs.microsoft.com/en-us/visualstudio/code-quality/fxcop-unported-deprecated-rules
+# CSxxxx
+# https://gist.github.com/thomaslevesque/43e4950a65961e2194e4ce082d64bc31
+# SAxxxx/SXxxxx
+# https://github.com/DotNetAnalyzers/StyleCopAnalyzers/tree/master/documentation
+# https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/Configuration.md
+# https://dotnetanalyzers.github.io/StyleCopAnalyzers/
+
+# Unnecessary async/await usage
+dotnet_diagnostic.Async001.severity = error
+# Long-running or blocking operations inside an async method
+dotnet_diagnostic.Async002.severity = error
+# Fire-and-forget async-void methods and delegates
+dotnet_diagnostic.Async003.severity = error
+# Fire-and-forget async call inside an using block
+dotnet_diagnostic.Async004.severity = error
+# Downcasting from a nested task to an outer task.
+dotnet_diagnostic.Async005.severity = error
+# Do not declare static members on generic types
+dotnet_diagnostic.CA1000.severity = warning
+# Types that own disposable fields should be disposable
+dotnet_diagnostic.CA1001.severity = none
+# Do not expose generic lists
+dotnet_diagnostic.CA1002.severity = none
+# Use generic event handler instances
+dotnet_diagnostic.CA1003.severity = none
+# UNPORTED: Generic methods should provide type parameter
+dotnet_diagnostic.CA1004.severity = none
+# Avoid excessive parameters on generic types
+dotnet_diagnostic.CA1005.severity = warning
+# DEPRECATED: Do not nest generic types in member signatures
+dotnet_diagnostic.CA1006.severity = none
+# UNPORTED: Use generics where appropriate
+dotnet_diagnostic.CA1007.severity = warning
+# Enums should have zero value
+dotnet_diagnostic.CA1008.severity = warning
+# DEPRECATED: Declare event handlers correctly
+dotnet_diagnostic.CA1009.severity = none
+# Collections should implement generic interface
+dotnet_diagnostic.CA1010.severity = warning
+# UNPORTED: Consider passing base types as parameters
+dotnet_diagnostic.CA1011.severity = none
+# Abstract types should not have constructors
+dotnet_diagnostic.CA1012.severity = warning
+# UNPORTED: Overload operator equals on overloading add and subtract
+dotnet_diagnostic.CA1013.severity = warning
+# Mark assemblies with CLSCompliantAttribute
+dotnet_diagnostic.CA1014.severity = none
+# Mark assemblies with AssemblyVersionAttribute
+dotnet_diagnostic.CA1016.severity = none
+# Mark assemblies with ComVisibleAttribute
+dotnet_diagnostic.CA1017.severity = none
+# Mark attributes with AttributeUsageAttribute
+dotnet_diagnostic.CA1018.severity = warning
+# Define accessors for attribute arguments
+dotnet_diagnostic.CA1019.severity = warning
+# DEPRECATED: Avoid namespaces with few types
+dotnet_diagnostic.CA1020.severity = none
+# UNPORTED/DEPRECATED?: Avoid out parameters
+dotnet_diagnostic.CA1021.severity = none
+# UNPORTED: Indexers should not be multidimensional
+dotnet_diagnostic.CA1023.severity = suggestion
+# Use properties where appropriate
+dotnet_diagnostic.CA1024.severity = none
+# DEPRECATED: Replace repetitive arguments with params array
+dotnet_diagnostic.CA1025.severity = none
+# DEPRECATED: Default parameters should not be used
+dotnet_diagnostic.CA1026.severity = none
+# Mark enums with FlagsAttribute
+dotnet_diagnostic.CA1027.severity = warning
+# Enum storage should be Int32
+dotnet_diagnostic.CA1028.severity = none
+# Use events where appropriate
+dotnet_diagnostic.CA1030.severity = none
+# Do not catch general exception types
+dotnet_diagnostic.CA1031.severity = none
+# Implement standard exception constructors
+dotnet_diagnostic.CA1032.severity = warning
+# Interface methods should be callable by child types
+dotnet_diagnostic.CA1033.severity = none
+# Nested types should not be visible
+dotnet_diagnostic.CA1034.severity = none
+# DEPRECATED: ICollection implementations have strongly typed members
+dotnet_diagnostic.CA1035.severity = none
+# Override methods on comparable types
+dotnet_diagnostic.CA1036.severity = suggestion
+# DEPRECATED: Enumerators should be strongly typed
+dotnet_diagnostic.CA1038.severity = none
+# DEPRECATED: Lists are strongly typed
+dotnet_diagnostic.CA1039.severity = none
+# Avoid empty interfaces
+dotnet_diagnostic.CA1040.severity = none
+# Provide ObsoleteAttribute message
+dotnet_diagnostic.CA1041.severity = none
+# Use integral or string argument for indexers
+dotnet_diagnostic.CA1043.severity = none
+# Properties should not be write only
+dotnet_diagnostic.CA1044.severity = warning
+# Do not pass types by reference
+dotnet_diagnostic.CA1045.severity = none
+# Do not overload operator equals on reference types
+dotnet_diagnostic.CA1046.severity = none
+# Do not declare protected members in sealed types
+dotnet_diagnostic.CA1047.severity = warning
+# DEPRECATED: Do not declare virtual members in sealed types
+dotnet_diagnostic.CA1048.severity = none
+# UNPORTED: Types that own native resources should be disposable
+dotnet_diagnostic.CA1049.severity = warning
+# Declare types in namespaces
+dotnet_diagnostic.CA1050.severity = warning
+# Do not declare visible instance fields
+dotnet_diagnostic.CA1051.severity = none
+# Static holder types should be sealed
+dotnet_diagnostic.CA1052.severity = warning
+# Static holder types should not have constructors
+dotnet_diagnostic.CA1053.severity = warning
+# URI parameters should not be strings
+dotnet_diagnostic.CA1054.severity = none
+# URI return values should not be strings
+dotnet_diagnostic.CA1055.severity = none
+# URI properties should not be strings
+dotnet_diagnostic.CA1056.severity = none
+# UNPORTED: String URI overloads call System.Uri overloads
+dotnet_diagnostic.CA1057.severity = none
+# Types should not extend certain base types
+dotnet_diagnostic.CA1058.severity = warning
+# DEPRECATED: Members should not expose certain concrete types
+dotnet_diagnostic.CA1059.severity = none
+# Move P/Invokes to NativeMethods class
+dotnet_diagnostic.CA1060.severity = suggestion
+# Do not hide base class methods
+dotnet_diagnostic.CA1061.severity = warning
+# Validate arguments of public methods
+dotnet_diagnostic.CA1062.severity = none
+# Implement IDisposable correctly
+dotnet_diagnostic.CA1063.severity = none
+# Exceptions should be public
+dotnet_diagnostic.CA1064.severity = warning
+# Do not raise exceptions in unexpected locations
+dotnet_diagnostic.CA1065.severity = warning
+# Implement IEquatable when overriding Equals
+dotnet_diagnostic.CA1066.severity = warning
+# Override Equals when implementing IEquatable
+dotnet_diagnostic.CA1067.severity = warning
+# CancellationToken parameters must come last
+dotnet_diagnostic.CA1068.severity = warning
+# Enums should not have duplicate values
+dotnet_diagnostic.CA1069.severity = warning
+# Do not declare event fields as virtual
+dotnet_diagnostic.CA1070.severity = warning
+# Avoid using cref tags with a prefix
+dotnet_diagnostic.CA1200.severity = none
+# UNPORTED: Specify MessageBoxOptions
+dotnet_diagnostic.CA1300.severity = none
+# UNPORTED: Avoid duplicate accelerators
+dotnet_diagnostic.CA1301.severity = none
+# DEPRECATED: Do not hardcode locale specific strings
+dotnet_diagnostic.CA1302.severity = none
+# Do not pass literals as localized parameters
+dotnet_diagnostic.CA1303.severity = none
+# Specify CultureInfo
+dotnet_diagnostic.CA1304.severity = suggestion
+# Specify IFormatProvider
+dotnet_diagnostic.CA1305.severity = none
+# UNPORTED: Set locale for data types
+dotnet_diagnostic.CA1306.severity = none
+# Specify StringComparison for clarity
+dotnet_diagnostic.CA1307.severity = suggestion
+# Normalize strings to uppercase
+dotnet_diagnostic.CA1308.severity = suggestion
+# Use ordinal StringComparison
+dotnet_diagnostic.CA1309.severity = suggestion
+# Specify StringComparison for correctness
+dotnet_diagnostic.CA1310.severity = suggestion
+# DEPRECATED: P/Invoke entry points should exist
+dotnet_diagnostic.CA1400.severity = none
+# P/Invokes should not be visible
+dotnet_diagnostic.CA1401.severity = suggestion
+# UNPORTED: Avoid overloads in COM visible interfaces
+dotnet_diagnostic.CA1402.severity = none
+# UNPORTED: Auto layout types should not be COM visible
+dotnet_diagnostic.CA1403.severity = warning
+# UNPORTED: Call GetLastError immediately after P/Invoke
+dotnet_diagnostic.CA1404.severity = warning
+# UNPORTED: COM visible type base types should be COM visible
+dotnet_diagnostic.CA1405.severity = warning
+# DEPRECATED: Avoid Int64 arguments for Visual Basic 6 clients
+dotnet_diagnostic.CA1406.severity = none
+# UNPORTED: Avoid static members in COM visible types
+dotnet_diagnostic.CA1407.severity = none
+# UNPORTED: Do not use AutoDual ClassInterfaceType
+dotnet_diagnostic.CA1408.severity = none
+# UNPORTED: Com visible types should be creatable
+dotnet_diagnostic.CA1409.severity = none
+# UNPORTED: COM registration methods should be matched
+dotnet_diagnostic.CA1410.severity = warning
+# UNPORTED: COM registration methods should not be visible
+dotnet_diagnostic.CA1411.severity = suggestion
+# UNPORTED: Mark ComSource Interfaces as IDispatch
+dotnet_diagnostic.CA1412.severity = none
+# UNPORTED: Avoid non-public fields in COM visible value types
+dotnet_diagnostic.CA1413.severity = none
+# UNPORTED: Mark boolean P/Invoke arguments with MarshalAs
+dotnet_diagnostic.CA1414.severity = none
+# UNPORTED: Declare P/Invokes correctly
+dotnet_diagnostic.CA1415.severity = warning
+# Validate platform compatibility
+dotnet_diagnostic.CA1416.severity = error
+# Do not use OutAttribute on string parameters for P/Invokes
+dotnet_diagnostic.CA1417.severity = none
+# UNPORTED: Variable names should not match field names
+# -> Already handled by IDE1006.
+dotnet_diagnostic.CA1500.severity = none
+# Avoid excessive inheritance
+dotnet_diagnostic.CA1501.severity = warning
+# Avoid excessive complexity
+dotnet_diagnostic.CA1502.severity = warning
+# DEPRECATED: Review misleading field names
+dotnet_diagnostic.CA1504.severity = none
+# Avoid unmaintainable code
+dotnet_diagnostic.CA1505.severity = warning
+# Avoid excessive class coupling
+dotnet_diagnostic.CA1506.severity = warning
+# Use nameof in place of string
+dotnet_diagnostic.CA1507.severity = warning
+# Avoid dead conditional code
+# -> Disabled because it doesn't work in every case and causes phantom warnings. (E.g. params can be null, but it's reported as "can never be null".)
+dotnet_diagnostic.CA1508.severity = none
+# Invalid entry in code metrics configuration file
+dotnet_diagnostic.CA1509.severity = none
+# UNPORTED: Do not use idle process priority
+dotnet_diagnostic.CA1600.severity = none
+# UNPORTED: Do not use timers that prevent power state changes
+dotnet_diagnostic.CA1601.severity = none
+# Do not name enum values 'Reserved'
+dotnet_diagnostic.CA1700.severity = warning
+# DEPRECATED: Resource string compound words should be cased correctly
+dotnet_diagnostic.CA1701.severity = none
+# DEPRECATED: Compound words should be cased correctly
+dotnet_diagnostic.CA1702.severity = none
+# DEPRECATED: Resource strings should be spelled correctly
+dotnet_diagnostic.CA1703.severity = none
+# UNPORTED (.NET 6?): Identifiers should be spelled correctly
+dotnet_diagnostic.CA1704.severity = none
+# Identifiers should not contain underscores
+dotnet_diagnostic.CA1707.severity = none
+# Identifiers should differ by more than case
+dotnet_diagnostic.CA1708.severity = error
+# UNPORTED: Identifiers should be cased correctly
+dotnet_diagnostic.CA1709.severity = none
+# Identifiers should have correct suffix
+dotnet_diagnostic.CA1710.severity = warning
+# Identifiers should not have incorrect suffix
+dotnet_diagnostic.CA1711.severity = warning
+# Do not prefix enum values with type name
+dotnet_diagnostic.CA1712.severity = warning
+# Events should not have before or after prefix
+dotnet_diagnostic.CA1713.severity = warning
+# Flags enums should have plural names
+dotnet_diagnostic.CA1714.severity = warning
+# Identifiers should have correct prefix
+# -> Could be handled by SA1314 and IDE1006, but CAxxxx are preferable over SAxxxx rules.
+dotnet_diagnostic.CA1715.severity = warning
+# Identifiers should not match keywords
+dotnet_diagnostic.CA1716.severity = none
+# Only FlagsAttribute enums should have plural names
+dotnet_diagnostic.CA1717.severity = warning
+# UNPORTED: Parameter names should not match member names
+# -> Already sufficiently handled by IDE1006.
+dotnet_diagnostic.CA1719.severity = none
+# Identifiers should not contain type names
+dotnet_diagnostic.CA1720.severity = warning
+# Property names should not match get methods
+dotnet_diagnostic.CA1721.severity = none
+# UNPORTED: Identifiers should not have incorrect prefix
+dotnet_diagnostic.CA1722.severity = warning
+# Type Names Should Not Match Namespaces
+dotnet_diagnostic.CA1724.severity = suggestion
+# Parameter names should match base declaration
+dotnet_diagnostic.CA1725.severity = warning
+# UNPORTED: Use preferred terms
+dotnet_diagnostic.CA1726.severity = none
+# DEPRECATED: Do not cast unnecessarily
+dotnet_diagnostic.CA1800.severity = none
+# Review unused parameters
+# -> Already handled by IDE0060.
+dotnet_diagnostic.CA1801.severity = none
+# Use Literals Where Appropriate
+dotnet_diagnostic.CA1802.severity = warning
+# DEPRECATED: Remove unused locals
+dotnet_diagnostic.CA1804.severity = none
+# Do not initialize unnecessarily
+dotnet_diagnostic.CA1805.severity = warning
+# Do not ignore method results
+dotnet_diagnostic.CA1806.severity = none
+# DEPRECATED: Avoid excessive locals
+dotnet_diagnostic.CA1809.severity = none
+# Initialize reference type static fields inline
+dotnet_diagnostic.CA1810.severity = warning
+# DEPRECATED: Avoid uncalled private code
+dotnet_diagnostic.CA1811.severity = none
+# Avoid uninstantiated internal classes
+dotnet_diagnostic.CA1812.severity = warning
+# Avoid unsealed attributes
+dotnet_diagnostic.CA1813.severity = warning
+# Prefer jagged arrays over multidimensional
+dotnet_diagnostic.CA1814.severity = suggestion
+# Override equals and operator equals on value types
+dotnet_diagnostic.CA1815.severity = warning
+# Call GC.SuppressFinalize correctly
+dotnet_diagnostic.CA1816.severity = none
+# Properties should not return arrays
+dotnet_diagnostic.CA1819.severity = suggestion
+# Test for empty strings using string length
+dotnet_diagnostic.CA1820.severity = warning
+# Remove empty finalizers
+dotnet_diagnostic.CA1821.severity = warning
+# Mark members as static
+# -> Disabled because it's too noisy and too irrelevant.
+dotnet_diagnostic.CA1822.severity = none
+# Avoid unused private fields
+# -> Already handled by IDE0051.
+dotnet_diagnostic.CA1823.severity = none
+# Mark assemblies with NeutralResourcesLanguageAttribute
+dotnet_diagnostic.CA1824.severity = none
+# Avoid zero-length array allocations
+dotnet_diagnostic.CA1825.severity = error
+# Use property instead of Linq Enumerable method
+dotnet_diagnostic.CA1826.severity = suggestion
+# Do not use Count/LongCount when Any can be used
+dotnet_diagnostic.CA1827.severity = warning
+# Do not use CountAsync/LongCountAsync when AnyAsync can be used
+dotnet_diagnostic.CA1828.severity = warning
+# Use Length/Count property instead of Enumerable.Count method
+dotnet_diagnostic.CA1829.severity = warning
+# Prefer strongly-typed Append and Insert method overloads on StringBuilder
+dotnet_diagnostic.CA1830.severity = warning
+# Use AsSpan instead of Range-based indexers for string when appropriate
+dotnet_diagnostic.CA1831.severity = warning
+# Use AsSpan or AsMemory instead of Range-based indexers for getting ReadOnlySpan or ReadOnlyMemory portion of an array
+dotnet_diagnostic.CA1832.severity = warning
+# Use AsSpan or AsMemory instead of Range-based indexers for getting Span or Memory portion of an array
+dotnet_diagnostic.CA1833.severity = warning
+# Use StringBuilder.Append(char) for single character strings
+dotnet_diagnostic.CA1834.severity = warning
+# Prefer the 'Memory'-based overloads for 'ReadAsync' and 'WriteAsync'
+dotnet_diagnostic.CA1835.severity = warning
+# Prefer IsEmpty over Count when available
+dotnet_diagnostic.CA1836.severity = warning
+# Use Environment.ProcessId instead of Process.GetCurrentProcess().Id
+dotnet_diagnostic.CA1837.severity = warning
+# Avoid StringBuilder parameters for P/Invokes
+dotnet_diagnostic.CA1838.severity = none
+# Prefer Dictionary Contains methods
+dotnet_diagnostic.CA1841.severity = warning
+# Use span-based 'string.Concat'
+dotnet_diagnostic.CA1845.severity = warning
+# Prefer AsSpan over Substring
+dotnet_diagnostic.CA1846.severity = warning
+# UNPORTED: Value type fields should be portable
+dotnet_diagnostic.CA1900.severity = none
+# DEPRECATED: P/Invoke declarations should be portable
+dotnet_diagnostic.CA1901.severity = none
+# DEPRECATED: Use only API from targeted framework
+dotnet_diagnostic.CA1903.severity = none
+# Dispose objects before losing scope
+dotnet_diagnostic.CA2000.severity = none
+# UNPORTED: Avoid calling problematic methods
+dotnet_diagnostic.CA2001.severity = warning
+# Do not lock on objects with weak identity
+dotnet_diagnostic.CA2002.severity = warning
+# DEPRECATED: Do not treat fibers as threads
+dotnet_diagnostic.CA2003.severity = none
+# UNPORTED: Remove calls to GC.KeepAlive
+dotnet_diagnostic.CA2004.severity = none
+# UNPORTED: Use SafeHandle to encapsulate native resources
+dotnet_diagnostic.CA2006.severity = none
+# Do not directly await a Task
+dotnet_diagnostic.CA2007.severity = none
+# Do not create tasks without passing a TaskScheduler
+dotnet_diagnostic.CA2008.severity = none
+# Do not call ToImmutableCollection on an ImmutableCollection value
+dotnet_diagnostic.CA2009.severity = error
+# Do not assign property within its setter
+dotnet_diagnostic.CA2011.severity = warning
+# Use ValueTasks correctly
+dotnet_diagnostic.CA2012.severity = warning
+# Do not use ReferenceEquals with value types
+dotnet_diagnostic.CA2013.severity = warning
+# Do not use stackalloc in loops.
+dotnet_diagnostic.CA2014.severity = warning
+# Do not define finalizers for types derived from MemoryManager<T>
+dotnet_diagnostic.CA2015.severity = warning
+# Forward the CancellationToken parameter to methods that take one
+dotnet_diagnostic.CA2016.severity = warning
+# Review SQL queries for security vulnerabilities
+dotnet_diagnostic.CA2100.severity = warning
+# Specify marshaling for P/Invoke string arguments
+dotnet_diagnostic.CA2101.severity = warning
+# DEPRECATED: Catch non-CLSCompliant exceptions in general handlers
+dotnet_diagnostic.CA2102.severity = none
+# DEPRECATED: Review imperative security
+dotnet_diagnostic.CA2103.severity = none
+# DEPRECATED: Do not declare read only mutable reference types
+dotnet_diagnostic.CA2104.severity = none
+# DEPRECATED: Array fields should not be read only
+dotnet_diagnostic.CA2105.severity = none
+# DEPRECATED: Secure asserts
+dotnet_diagnostic.CA2106.severity = none
+# DEPRECATED: Review deny and permit only usage
+dotnet_diagnostic.CA2107.severity = none
+# DEPRECATED: Review declarative security on value types
+dotnet_diagnostic.CA2108.severity = none
+# Review visible event handlers	
+dotnet_diagnostic.CA2109.severity = warning
+# DEPRECATED: Pointers should not be visible
+dotnet_diagnostic.CA2111.severity = none
+# DEPRECATED: Secured types should not expose fields
+dotnet_diagnostic.CA2112.severity = none
+# DEPRECATED: Method security should be a superset of type
+dotnet_diagnostic.CA2114.severity = none
+# DEPRECATED: Call GC.KeepAlive when using native resources
+dotnet_diagnostic.CA2115.severity = none
+# DEPRECATED: APTCA methods should only call APTCA methods
+dotnet_diagnostic.CA2116.severity = none
+# DEPRECATED: APTCA types should only extend APTCA base types
+dotnet_diagnostic.CA2117.severity = none
+# DEPRECATED: Review SuppressUnmanagedCodeSecurityAttribute usage
+dotnet_diagnostic.CA2118.severity = none
+# Seal methods that satisfy private interfaces
+dotnet_diagnostic.CA2119.severity = warning
+# DEPRECATED: Secure serialization constructors
+dotnet_diagnostic.CA2120.severity = none
+# DEPRECATED: Static constructors should be private
+dotnet_diagnostic.CA2121.severity = none
+# DEPRECATED: Do not indirectly expose methods with link demands
+dotnet_diagnostic.CA2122.severity = none
+# DEPRECATED: Override link demands should be identical to base
+dotnet_diagnostic.CA2123.severity = none
+# DEPRECATED: Wrap vulnerable finally clauses in outer try
+dotnet_diagnostic.CA2124.severity = none
+# DEPRECATED: Type link demands require inheritance demands
+dotnet_diagnostic.CA2126.severity = none
+# DEPRECATED: Security critical constants should be transparent
+dotnet_diagnostic.CA2130.severity = none
+# DEPRECATED: Security critical types may not participate in type equivalence
+dotnet_diagnostic.CA2131.severity = none
+# DEPRECATED: Default constructors must be at least as critical as base type default constructors
+dotnet_diagnostic.CA2132.severity = none
+# DEPRECATED: Delegates must bind to methods with consistent transparency
+dotnet_diagnostic.CA2133.severity = none
+# DEPRECATED: Methods must keep consistent transparency when overriding base methods
+dotnet_diagnostic.CA2134.severity = none
+# DEPRECATED: Level 2 assemblies should not contain LinkDemands
+dotnet_diagnostic.CA2135.severity = none
+# DEPRECATED: Members should not have conflicting transparency annotations
+dotnet_diagnostic.CA2136.severity = none
+# DEPRECATED: Transparent methods must contain only verifiable IL
+dotnet_diagnostic.CA2137.severity = none
+# DEPRECATED: Transparent methods must not call methods with the SuppressUnmanagedCodeSecurity attribute
+dotnet_diagnostic.CA2138.severity = none
+# DEPRECATED: Transparent methods may not use the HandleProcessCorruptingExceptions attribute
+dotnet_diagnostic.CA2139.severity = none
+# DEPRECATED: Transparent code must not reference security critical items
+dotnet_diagnostic.CA2140.severity = none
+# DEPRECATED: Transparent methods must not satisfy LinkDemands
+dotnet_diagnostic.CA2141.severity = none
+# DEPRECATED: Transparent code should not be protected with LinkDemands
+dotnet_diagnostic.CA2142.severity = none
+# DEPRECATED: Transparent methods should not use security demands
+dotnet_diagnostic.CA2143.severity = none
+# DEPRECATED: Transparent code should not load assemblies from byte arrays
+dotnet_diagnostic.CA2144.severity = none
+# DEPRECATED: Transparent methods should not be decorated with the SuppressUnmanagedCodeSecurityAttribute
+dotnet_diagnostic.CA2145.severity = none
+# DEPRECATED: Types must be at least as critical as their base types and interfaces
+dotnet_diagnostic.CA2146.severity = none
+# DEPRECATED: Transparent methods may not use security asserts
+dotnet_diagnostic.CA2147.severity = none
+# DEPRECATED: Transparent methods must not call into native code
+dotnet_diagnostic.CA2149.severity = none
+# DEPRECATED: Fields with critical types should be security critical
+dotnet_diagnostic.CA2151.severity = none
+# Avoid handling Corrupted State Exceptions
+dotnet_diagnostic.CA2153.severity = none
+# Rethrow to preserve stack details
+dotnet_diagnostic.CA2200.severity = warning
+# Do not raise reserved exception types
+dotnet_diagnostic.CA2201.severity = warning
+# DEPRECATED: Do not dispose objects multiple times
+dotnet_diagnostic.CA2202.severity = none
+# UNPORTED: Literals should be spelled correctly
+dotnet_diagnostic.CA2204.severity = none
+# UNPORTED: Use managed equivalents of Win32 API
+dotnet_diagnostic.CA2205.severity = none
+# Initialize value type static fields inline
+dotnet_diagnostic.CA2207.severity = warning
+# Instantiate argument exceptions correctly
+dotnet_diagnostic.CA2208.severity = warning
+# DEPRECATED:  Assemblies should have valid strong names
+dotnet_diagnostic.CA2210.severity = none
+# Non-constant fields should not be visible
+dotnet_diagnostic.CA2211.severity = warning
+# UNPORTED: Do not mark serviced components with WebMethod
+dotnet_diagnostic.CA2212.severity = none
+# Disposable fields should be disposed
+dotnet_diagnostic.CA2213.severity = none
+# Do not call overridable methods in constructors
+dotnet_diagnostic.CA2214.severity = warning
+# Dispose methods should call base class dispose
+dotnet_diagnostic.CA2215.severity = warning
+# Disposable types should declare finalizer
+dotnet_diagnostic.CA2216.severity = none
+# Do not mark enums with FlagsAttribute
+dotnet_diagnostic.CA2217.severity = error
+# UNPORTED: Override GetHashCode on overriding Equals
+dotnet_diagnostic.CA2218.severity = warning
+# Do not raise exceptions in exception clauses
+dotnet_diagnostic.CA2219.severity = warning
+# DEPRECATED: Finalizers should call base class finalizer
+dotnet_diagnostic.CA2220.severity = none
+# DEPRECATED: Finalizers should be protected
+dotnet_diagnostic.CA2221.severity = none
+# DEPRECATED: Do not decrease inherited member visibility
+dotnet_diagnostic.CA2222.severity = none
+# DEPRECATED: Members should differ by more than return type
+dotnet_diagnostic.CA2223.severity = none
+# UNPORTED: Override equals on overloading operator equals
+dotnet_diagnostic.CA2224.severity = warning
+# Operator overloads have named alternates
+dotnet_diagnostic.CA2225.severity = none
+# Operators should have symmetrical overloads
+dotnet_diagnostic.CA2226.severity = warning
+# Collection properties should be read only
+dotnet_diagnostic.CA2227.severity = warning
+# DEPRECATED: Do not ship unreleased resource formats
+dotnet_diagnostic.CA2228.severity = none
+# Implement serialization constructors
+dotnet_diagnostic.CA2229.severity = warning
+# DEPRECATED: Use params for variable arguments
+dotnet_diagnostic.CA2230.severity = none
+# Overload operator equals on overriding ValueType.Equals
+dotnet_diagnostic.CA2231.severity = warning
+# UNPORTED: Mark Windows Forms entry points with STAThread
+dotnet_diagnostic.CA2232.severity = none
+# DEPRECATED: Operations should not overflow
+dotnet_diagnostic.CA2233.severity = none
+# Pass System.Uri objects instead of strings
+dotnet_diagnostic.CA2234.severity = none
+# Mark all non-serializable fields
+dotnet_diagnostic.CA2235.severity = warning
+# UNPORTED: Call base class methods on ISerializable types
+dotnet_diagnostic.CA2236.severity = none
+# Mark ISerializable types with SerializableAttribute
+dotnet_diagnostic.CA2237.severity = warning
+# UNPORTED: Implement serialization methods correctly
+dotnet_diagnostic.CA2238.severity = none
+# UNPORTED: Provide deserialization methods for optional fields
+dotnet_diagnostic.CA2239.severity = none
+# UNPORTED: Implement ISerializable correctly
+dotnet_diagnostic.CA2240.severity = none
+# Provide correct arguments to formatting methods
+dotnet_diagnostic.CA2241.severity = warning
+# Test for NaN correctly
+dotnet_diagnostic.CA2242.severity = warning
+# Attribute string literals should parse correctly
+dotnet_diagnostic.CA2243.severity = warning
+# Do not duplicate indexed element initializations
+dotnet_diagnostic.CA2244.severity = warning
+# Do not assign a property to itself
+dotnet_diagnostic.CA2245.severity = warning
+# Do not assign a symbol and its member in the same statement
+dotnet_diagnostic.CA2246.severity = warning
+# Argument passed to TaskCompletionSource constructor should be TaskCreationOptions enum instead of TaskContinuationOptions enum.
+dotnet_diagnostic.CA2247.severity = warning
+# Provide correct enum argument to Enum.HasFlag
+dotnet_diagnostic.CA2248.severity = warning
+# Consider using String.Contains instead of String.IndexOf
+dotnet_diagnostic.CA2249.severity = warning
+# Do not use insecure deserializer BinaryFormatter
+dotnet_diagnostic.CA2300.severity = none
+# Do not call BinaryFormatter.Deserialize without first setting BinaryFormatter.Binder
+dotnet_diagnostic.CA2301.severity = none
+# Ensure BinaryFormatter.Binder is set before calling BinaryFormatter.Deserialize
+dotnet_diagnostic.CA2302.severity = none
+# Do not use insecure deserializer LosFormatter
+dotnet_diagnostic.CA2305.severity = none
+# Do not use insecure deserializer NetDataContractSerializer
+dotnet_diagnostic.CA2310.severity = none
+# Do not deserialize without first setting NetDataContractSerializer.Binder
+dotnet_diagnostic.CA2311.severity = none
+# Ensure NetDataContractSerializer.Binder is set before deserializing
+dotnet_diagnostic.CA2312.severity = none
+# Do not use insecure deserializer ObjectStateFormatter
+dotnet_diagnostic.CA2315.severity = none
+# Do not deserialize with JavaScriptSerializer using a SimpleTypeResolver
+dotnet_diagnostic.CA2321.severity = none
+# Ensure JavaScriptSerializer is not initialized with SimpleTypeResolver before deserializing
+dotnet_diagnostic.CA2322.severity = none
+# Do not use TypeNameHandling values other than None
+dotnet_diagnostic.CA2326.severity = warning
+# Do not use insecure JsonSerializerSettings
+dotnet_diagnostic.CA2327.severity = warning
+# Ensure that JsonSerializerSettings are secure
+dotnet_diagnostic.CA2328.severity = warning
+# Do not deserialize with JsonSerializer using an insecure configuration
+dotnet_diagnostic.CA2329.severity = warning
+# Ensure that JsonSerializer has a secure configuration when deserializing
+dotnet_diagnostic.CA2330.severity = warning
+# Ensure DataTable.ReadXml()'s input is trusted
+dotnet_diagnostic.CA2350.severity = none
+# Ensure DataSet.ReadXml()'s input is trusted
+dotnet_diagnostic.CA2351.severity = none
+# Unsafe DataSet or DataTable in serializable type can be vulnerable to remote code execution attacks
+dotnet_diagnostic.CA2352.severity = none
+# Unsafe DataSet or DataTable in serializable type
+dotnet_diagnostic.CA2353.severity = none
+# Unsafe DataSet or DataTable in deserialized object graph can be vulnerable to remote code execution attack
+dotnet_diagnostic.CA2354.severity = none
+# Unsafe DataSet or DataTable in deserialized object graph
+dotnet_diagnostic.CA2355.severity = none
+# Unsafe DataSet or DataTable in web deserialized object graph
+dotnet_diagnostic.CA2356.severity = none
+# Ensure autogenerated class containing DataSet.ReadXml() is not used with untrusted data
+dotnet_diagnostic.CA2361.severity = none
+# Unsafe DataSet or DataTable in autogenerated serializable type can be vulnerable to remote code execution attacks
+dotnet_diagnostic.CA2362.severity = none
+# Review code for SQL injection vulnerabilities
+# -> Disabled because it's unclear if it only affects classic ASP.NET - or ASP.NET Core too.
+dotnet_diagnostic.CA3001.severity = none
+# Review code for XSS vulnerabilities
+# -> Disabled because it's unclear if it only affects classic ASP.NET - or ASP.NET Core too.
+dotnet_diagnostic.CA3002.severity = none
+# Review code for file path injection vulnerabilities
+# -> Disabled because it's unclear if it only affects classic ASP.NET - or ASP.NET Core too.
+dotnet_diagnostic.CA3003.severity = none
+# Review code for information disclosure vulnerabilities
+# -> Disabled because it's unclear if it only affects classic ASP.NET - or ASP.NET Core too.
+dotnet_diagnostic.CA3004.severity = none
+# Review code for LDAP injection vulnerabilities
+# -> Disabled because it's unclear if it only affects classic ASP.NET - or ASP.NET Core too.
+dotnet_diagnostic.CA3005.severity = none
+# Review code for process command injection vulnerabilities
+# -> Disabled because it's unclear if it only affects classic ASP.NET - or ASP.NET Core too.
+dotnet_diagnostic.CA3006.severity = none
+# Review code for open redirect vulnerabilities
+# -> Disabled because it's unclear if it only affects classic ASP.NET - or ASP.NET Core too.
+dotnet_diagnostic.CA3007.severity = none
+# Review code for XPath injection vulnerabilities
+# -> Disabled because it's unclear if it only affects classic ASP.NET - or ASP.NET Core too.
+dotnet_diagnostic.CA3008.severity = none
+# Review code for XML injection vulnerabilities
+# -> Disabled because it's unclear if it only affects classic ASP.NET - or ASP.NET Core too.
+dotnet_diagnostic.CA3009.severity = none
+# Review code for XAML injection vulnerabilities
+# -> Disabled because it's unclear if it only affects classic ASP.NET - or ASP.NET Core too.
+dotnet_diagnostic.CA3010.severity = none
+# Review code for DLL injection vulnerabilities
+# -> Disabled because it's unclear if it only affects classic ASP.NET - or ASP.NET Core too.
+dotnet_diagnostic.CA3011.severity = none
+# Review code for regex injection vulnerabilities
+# -> Disabled because it's unclear if it only affects classic ASP.NET - or ASP.NET Core too.
+dotnet_diagnostic.CA3012.severity = none
+# Do not add schema by URL
+dotnet_diagnostic.CA3061.severity = none
+# Insecure DTD Processing
+dotnet_diagnostic.CA3075.severity = none
+# Insecure XSLT Script Execution
+dotnet_diagnostic.CA3076.severity = none
+# Insecure Processing in API Design, XML Document and XML Text Reader
+dotnet_diagnostic.CA3077.severity = none
+# Mark verb handlers with ValidateAntiForgeryToken
+# -> Disabled because it's unclear if it only affects classic ASP.NET - or ASP.NET Core too. CA5391 maybe is a replacement for this rule.
+dotnet_diagnostic.CA3147.severity = none
+# DEPRECATED: P/Invoke declarations should not be safe critical
+dotnet_diagnostic.CA5122.severity = none
+# Do Not Use Weak Cryptographic Algorithms
+dotnet_diagnostic.CA5350.severity = warning
+# Do Not Use Broken Cryptographic Algorithms
+dotnet_diagnostic.CA5351.severity = warning
+# Do Not Use Unsafe Cipher Modes
+dotnet_diagnostic.CA5358.severity = warning
+# Do not disable certificate validation
+dotnet_diagnostic.CA5359.severity = warning
+# Do not call dangerous methods in deserialization
+dotnet_diagnostic.CA5360.severity = warning
+# Do not disable Schannel use of strong crypto
+dotnet_diagnostic.CA5361.severity = warning
+# Potential reference cycle in deserialized object graph
+dotnet_diagnostic.CA5362.severity = warning
+# Do not disable request validation
+# -> Disabled because it's unclear if it only affects classic ASP.NET - or ASP.NET Core too.
+dotnet_diagnostic.CA5363.severity = none
+# Do not use deprecated security protocols
+dotnet_diagnostic.CA5364.severity = warning
+# Do Not Disable HTTP Header Checking
+# -> Disabled because it's unclear if it only affects classic ASP.NET - or ASP.NET Core too.
+dotnet_diagnostic.CA5365.severity = none
+# Use XmlReader For DataSet Read XML
+dotnet_diagnostic.CA5366.severity = none
+# Do Not Serialize Types With Pointer Fields
+dotnet_diagnostic.CA5367.severity = none
+# Set ViewStateUserKey For Classes Derived From Page
+# -> Disabled because it's unclear if it only affects classic ASP.NET - or ASP.NET Core too.
+dotnet_diagnostic.CA5368.severity = none
+# Use XmlReader for Deserialize
+dotnet_diagnostic.CA5369.severity = warning
+# Use XmlReader for validating reader
+dotnet_diagnostic.CA5370.severity = warning
+# Use XmlReader for schema read
+dotnet_diagnostic.CA5371.severity = warning
+# Use XmlReader for XPathDocument
+dotnet_diagnostic.CA5372.severity = warning
+# Do not use obsolete key derivation function
+dotnet_diagnostic.CA5373.severity = warning
+# Do Not Use XslTransform
+dotnet_diagnostic.CA5374.severity = warning
+# Do not use account shared access signature
+dotnet_diagnostic.CA5375.severity = none
+# Use SharedAccessProtocol HttpsOnly
+dotnet_diagnostic.CA5376.severity = none
+# Use container level access policy
+dotnet_diagnostic.CA5377.severity = none
+# Do not disable ServicePointManagerSecurityProtocols
+dotnet_diagnostic.CA5378.severity = none
+# Do not use weak key derivation function algorithm
+dotnet_diagnostic.CA5379.severity = warning
+# Do not add certificates to root store
+dotnet_diagnostic.CA5380.severity = none
+# Ensure certificates are not added to root store
+dotnet_diagnostic.CA5381.severity = none
+# Use secure cookies in ASP.NET Core
+dotnet_diagnostic.CA5382.severity = warning
+# Ensure use secure cookies in ASP.NET Core
+dotnet_diagnostic.CA5383.severity = warning
+# Do not use digital signature algorithm (DSA)
+dotnet_diagnostic.CA5384.severity = warning
+# Use Rivest–Shamir–Adleman (RSA) algorithm with sufficient key size
+dotnet_diagnostic.CA5385.severity = warning
+# Avoid hardcoding SecurityProtocolType value
+dotnet_diagnostic.CA5386.severity = warning
+# Do not use weak key derivation function with insufficient iteration count
+dotnet_diagnostic.CA5387.severity = warning
+# Ensure sufficient iteration count when using weak key derivation function
+dotnet_diagnostic.CA5388.severity = warning
+# Do not add archive item's path to the target file system path
+dotnet_diagnostic.CA5389.severity = none
+# Do not hard-code encryption key
+dotnet_diagnostic.CA5390.severity = warning
+# Use antiforgery tokens in ASP.NET Core MVC controllers
+dotnet_diagnostic.CA5391.severity = warning
+# Use DefaultDllImportSearchPaths attribute for P/Invokes
+dotnet_diagnostic.CA5392.severity = none
+# Do not use unsafe DllImportSearchPath value
+dotnet_diagnostic.CA5393.severity = none
+#  Do not use insecure randomness
+dotnet_diagnostic.CA5394.severity = suggestion
+# Miss HttpVerb attribute for action methods
+dotnet_diagnostic.CA5395.severity = warning
+# Set HttpOnly to true for HttpCookie
+dotnet_diagnostic.CA5396.severity = none
+# Do not use deprecated SslProtocols values
+dotnet_diagnostic.CA5397.severity = warning
+# Avoid hardcoded SslProtocols values
+dotnet_diagnostic.CA5398.severity = warning
+# Definitely disable HttpClient certificate revocation list check
+dotnet_diagnostic.CA5399.severity = warning
+# Ensure HttpClient certificate revocation list check is not disabled
+dotnet_diagnostic.CA5400.severity = warning
+# Do not use CreateEncryptor with non-default IV
+dotnet_diagnostic.CA5401.severity = warning
+# Use CreateEncryptor with the default IV
+dotnet_diagnostic.CA5402.severity = warning
+# Do not hard-code certificate
+dotnet_diagnostic.CA5403.severity = warning
+# FxCopAnalyzers package has been deprecated in favor of 'Microsoft.CodeAnalysis.NetAnalyzers', that ships with the .NET SDK
+dotnet_diagnostic.CA9998.severity = none
+# Avoid accessing Assembly file path when publishing as a single file
+dotnet_diagnostic.IL3000.severity = warning
+# Avoid accessing Assembly file path when publishing as a single-file
+dotnet_diagnostic.IL3001.severity = warning
+# Avoid calling members annotated with 'RequiresAssemblyFilesAttribute' when publishing as a single file
+dotnet_diagnostic.IL3002.severity = warning
+# Nearly all CS are errors or warnings by default, so don't state them all here.
+# Unnecessary using directive
+dotnet_diagnostic.CS8019.severity = warning
+# Unused extern alias
+dotnet_diagnostic.CS8020.severity = warning
+# All diagnostics of XML documentation comments has been disabled due to the current project configuration
+dotnet_diagnostic.SA0001.severity = none
+# The stylecop.json settings file could not be loaded due to a deserialization error
+dotnet_diagnostic.SA0002.severity = warning
+# The spacing around a C# keyword is incorrect
+dotnet_diagnostic.SA1000.severity = warning
+# The spacing around a comma is incorrect, within a C# code file
+dotnet_diagnostic.SA1001.severity = warning
+# The spacing around a semicolon is incorrect, within a C# code file
+# -> Already handled by IDE0055.
+dotnet_diagnostic.SA1002.severity = none
+# The spacing around an operator symbol is incorrect, within a C# code file
+# -> Not fully handled by IDE0055 because of the ! operator - but disabled because of colon in base ctor call.
+dotnet_diagnostic.SA1003.severity = none
+# A line within a documentation header above a C# element does not begin with a single space
+dotnet_diagnostic.SA1004.severity = warning
+# A single-line comment within a C# code file does not begin with a single space
+dotnet_diagnostic.SA1005.severity = warning
+# A C# preprocessor-type keyword is preceded by space
+dotnet_diagnostic.SA1006.severity = warning
+# The operator keyword within a C# operator overload method is not followed by any whitespace
+# -> Already handled by IDE0055.
+dotnet_diagnostic.SA1007.severity = none
+# An opening parenthesis within a C# statement is not spaced correctly
+# -> Already handled by IDE0055.
+dotnet_diagnostic.SA1008.severity = none
+# A closing parenthesis within a C# statement is not spaced correctly
+# -> Already handled by IDE0055.
+dotnet_diagnostic.SA1009.severity = none
+# An opening square bracket within a C# statement is not spaced correctly
+# -> Only partially handled by IDE0055.
+dotnet_diagnostic.SA1010.severity = warning
+# A closing square bracket within a C# statement is not spaced correctly
+# -> Only partially handled by IDE0055.
+dotnet_diagnostic.SA1011.severity = warning
+# An opening brace within a C# element is not spaced correctly
+dotnet_diagnostic.SA1012.severity = warning
+# A closing brace within a C# element is not spaced correctly
+dotnet_diagnostic.SA1013.severity = warning
+# An opening generic bracket within a C# element is not spaced correctly
+dotnet_diagnostic.SA1014.severity = warning
+# A closing generic bracket within a C# element is not spaced correctly
+dotnet_diagnostic.SA1015.severity = warning
+# An opening attribute bracket within a C# element is not spaced correctly
+dotnet_diagnostic.SA1016.severity = warning
+# A closing attribute bracket within a C# element is not spaced correctly
+dotnet_diagnostic.SA1017.severity = warning
+# A nullable type symbol within a C# element is not spaced correctly
+dotnet_diagnostic.SA1018.severity = warning
+# The spacing around a member access symbol is incorrect, within a C# code file
+# -> Already handled by IDE0055.
+dotnet_diagnostic.SA1019.severity = none
+# An increment or decrement symbol within a C# element is not spaced correctly
+dotnet_diagnostic.SA1020.severity = warning
+# A negative sign within a C# element is not spaced correctly
+dotnet_diagnostic.SA1021.severity = warning
+# A positive sign within a C# element is not spaced correctly
+dotnet_diagnostic.SA1022.severity = warning
+# A dereference symbol or an access-of symbol within a C# element is not spaced correctly
+dotnet_diagnostic.SA1023.severity = warning
+# A colon within a C# element is not spaced correctly
+dotnet_diagnostic.SA1024.severity = warning
+# The code contains multiple whitespace characters in a row
+dotnet_diagnostic.SA1025.severity = warning
+# An implicitly typed new array allocation within a C# code file is not spaced correctly
+dotnet_diagnostic.SA1026.severity = warning
+# The code contains a tab or space character which is not consistent with the current project settings
+# -> Already handled by IDE0055.
+dotnet_diagnostic.SA1027.severity = none
+# A line of code ends with a space, tab, or other whitespace characters before the end of line character(s)
+# -> Already handled by IDE0055.
+dotnet_diagnostic.SA1028.severity = none
+# A call to a member from an inherited class begins with base., and the local class does not contain an override or implementation of the member
+dotnet_diagnostic.SA1100.severity = warning
+# A call to an instance member of the local class or a base class is not prefixed with 'this.', within a C# code file
+dotnet_diagnostic.SA1101.severity = none
+# A C# query clause does not begin on the same line as the previous clause, or on the next line
+dotnet_diagnostic.SA1102.severity = none
+# The clauses within a C# query expression are not all placed on the same line, and each clause is not placed on its own line
+dotnet_diagnostic.SA1103.severity = none
+# A clause within a C# query expression begins on the same line as the previous clause, when the previous clause spans across multiple lines
+dotnet_diagnostic.SA1104.severity = none
+# A clause within a C# query expression spans across multiple lines, and does not begin on its own line
+dotnet_diagnostic.SA1105.severity = none
+# The C# code contains an extra semicolon
+dotnet_diagnostic.SA1106.severity = error
+# The C# code contains more than one statement on a single line
+# -> Already handled by IDE0055. (But additionally it's not working either.)
+dotnet_diagnostic.SA1107.severity = none
+# A C# statement contains a comment between the declaration of the statement and the opening brace of the statement
+dotnet_diagnostic.SA1108.severity = warning
+# DEPRECATED: A C# statement contains a region tag between the declaration of the statement and the opening brace of the statement
+dotnet_diagnostic.SA1109.severity = none
+# The opening parenthesis or bracket in a call to a C# method or indexer, or the declaration of a method or indexer, is not placed on the same line as the method or indexer name
+dotnet_diagnostic.SA1110.severity = warning
+# The closing parenthesis or bracket in a call to a C# method or indexer, or the declaration of a method or indexer, is not placed on the same line as the last parameter
+dotnet_diagnostic.SA1111.severity = warning
+# The closing parenthesis or bracket in a call to a C# method or indexer, or the declaration of a method or indexer, is not placed on the same line as the opening bracket when the element does not take any parameters
+dotnet_diagnostic.SA1112.severity = warning
+# A comma between two parameters in a call to a C# method or indexer, or in the declaration of a method or indexer, is not placed on the same line as the previous parameter
+dotnet_diagnostic.SA1113.severity = warning
+# The start of the parameter list for a method or indexer call or declaration does not begin on the same line as the opening bracket, or on the line after the opening bracket
+dotnet_diagnostic.SA1114.severity = warning
+# A parameter within a C# method or indexer call or declaration does not begin on the same line as the previous parameter, or on the next line
+dotnet_diagnostic.SA1115.severity = warning
+# The parameters to a C# method or indexer call or declaration span across multiple lines, but the first parameter does not start on the line after the opening bracket
+dotnet_diagnostic.SA1116.severity = none
+# The parameters to a C# method or indexer call or declaration are not all on the same line or each on a separate line
+dotnet_diagnostic.SA1117.severity = none
+# A parameter to a C# method or indexer, other than the first parameter, spans across multiple lines
+dotnet_diagnostic.SA1118.severity = none
+# A C# statement contains parenthesis which are unnecessary and should be removed
+# -> Already handled by dotnet_style_parentheses_in_other_operators/IDE0047/IDE0048.
+dotnet_diagnostic.SA1119.severity = none
+# The C# comment does not contain any comment text
+dotnet_diagnostic.SA1120.severity = warning
+# The code uses one of the basic C# types, but does not use the built-in alias for the type
+dotnet_diagnostic.SA1121.severity = none
+# The C# code includes an empty string, written as ""
+dotnet_diagnostic.SA1122.severity = none
+# The C# code contains a region within the body of a code element
+dotnet_diagnostic.SA1123.severity = warning
+# The C# code contains a region
+dotnet_diagnostic.SA1124.severity = warning
+# The Nullable type has been defined not using the C# shorthand
+dotnet_diagnostic.SA1125.severity = warning
+# DEPRECATED: A call to a member is not prefixed with the 'this.', 'base.', 'object.' or 'typename.' prefix to indicate the intended method call, within a C# code file
+dotnet_diagnostic.SA1126.severity = none
+# A generic constraint on a type or method declaration is on the same line as the declaration, within a C# code file
+dotnet_diagnostic.SA1127.severity = none
+# A constructor initializer is on the same line as the constructor declaration, within a C# code file
+dotnet_diagnostic.SA1128.severity = none
+# A value type was constructed using the syntax new T()
+dotnet_diagnostic.SA1129.severity = warning
+# An anonymous method was declared using the form delegate (parameters) { }, when a lambda expression would provide equivalent behavior with the syntax (parameters) => { }
+dotnet_diagnostic.SA1130.severity = warning
+# A comparison was made between a variable and a literal or constant value, and the variable appeared on the right-hand side of the expression
+dotnet_diagnostic.SA1131.severity = warning
+# Two or more fields were declared in the same field declaration syntax
+dotnet_diagnostic.SA1132.severity = warning
+# Two or more attributes appeared within the same set of square brackets
+dotnet_diagnostic.SA1133.severity = none
+# An attribute is placed on the same line of code as another attribute or element
+# -> Already handled by IDE0055.
+dotnet_diagnostic.SA1134.severity = none
+# A using directive is not qualified
+dotnet_diagnostic.SA1135.severity = warning
+# Multiple enum values are placed on the same line of code
+dotnet_diagnostic.SA1136.severity = warning
+# Two sibling elements which each start on their own line have different levels of indentation
+dotnet_diagnostic.SA1137.severity = warning
+# Use literal suffix notation instead of casting
+dotnet_diagnostic.SA1139.severity = warning
+# Use tuple syntax instead of the underlying ValueTuple implementation type
+dotnet_diagnostic.SA1141.severity = error
+# An element of a tuple was referenced by its metadata name when an element name is available
+dotnet_diagnostic.SA1142.severity = error
+# A C# using directive is placed outside of a namespace element
+# -> Already handled by IDE0065.
+dotnet_diagnostic.SA1200.severity = none
+# An element within a C# code file is out of order in relation to the other elements in the code
+dotnet_diagnostic.SA1201.severity = warning
+# An element within a C# code file is out of order within regard to access level, in relation to other elements in the code
+dotnet_diagnostic.SA1202.severity = warning
+# A constant field is placed beneath a non-constant field
+dotnet_diagnostic.SA1203.severity = warning
+# A static element is positioned beneath an instance element of the same type
+dotnet_diagnostic.SA1204.severity = warning
+# The partial element does not have an access modifier defined
+dotnet_diagnostic.SA1205.severity = warning
+# The keywords within the declaration of an element do not follow a standard ordering scheme
+dotnet_diagnostic.SA1206.severity = error
+# The keyword protected is positioned after the keyword internal within the declaration of a protected internal C# element
+# -> Already handled by IDE0036.
+dotnet_diagnostic.SA1207.severity = none
+# A using directive which declares a member of the System namespace appears after a using directive which declares a member of a different namespace, within a C# code file
+dotnet_diagnostic.SA1208.severity = warning
+# A using-alias directive is positioned before a regular using directive
+dotnet_diagnostic.SA1209.severity = warning
+# The using directives within a C# code file are not sorted alphabetically by namespace
+dotnet_diagnostic.SA1210.severity = warning
+# The using-alias directives within a C# code file are not sorted alphabetically by alias name
+dotnet_diagnostic.SA1211.severity = warning
+# A get accessor appears after a set accessor within a property or indexer
+dotnet_diagnostic.SA1212.severity = warning
+# An add accessor appears after a remove accessor within an event
+dotnet_diagnostic.SA1213.severity = warning
+# A readonly field is positioned beneath a non-readonly field
+dotnet_diagnostic.SA1214.severity = warning
+# DEPRECATED: An instance readonly element is positioned beneath an instance non-readonly element of the same type
+dotnet_diagnostic.SA1215.severity = none
+# A using static directive is positioned at the wrong location (before a regular using directive or after an alias using directive)
+dotnet_diagnostic.SA1216.severity = warning
+# The using static directives within a C# code file are not sorted alphabetically by full type name
+dotnet_diagnostic.SA1217.severity = warning
+# The name of a C# element does not begin with an upper-case letter
+# -> Already handled by IDE1006.
+dotnet_diagnostic.SA1300.severity = none
+# UNPORTED: The name of a C# element does not begin with an lower-case letter
+dotnet_diagnostic.SA1301.severity = none
+# The name of a C# interface does not begin with the capital letter I
+# -> Already handled by IDE1006.
+dotnet_diagnostic.SA1302.severity = none
+# The name of a constant C# field should begin with an upper-case letter
+dotnet_diagnostic.SA1303.severity = none
+# The name of a non-private readonly C# field should being with an upper-case letter
+# -> Already handled by IDE1006.
+dotnet_diagnostic.SA1304.severity = none
+# The name of a field or variable in C# uses Hungarian notation
+dotnet_diagnostic.SA1305.severity = none
+# The name of a field in C# does not begin with a lower-case letter
+# -> Already handled by IDE1006.
+dotnet_diagnostic.SA1306.severity = none
+# The name of a public or internal field in C# does not begin with an upper-case letter
+# -> Already handled by IDE1006.
+dotnet_diagnostic.SA1307.severity = none
+# A field name in C# is prefixed with m_ or s_
+dotnet_diagnostic.SA1308.severity = error
+# A field name in C# begins with an underscore
+dotnet_diagnostic.SA1309.severity = none
+# A field name in C# contains an underscore
+# -> Disabled because it's not working.
+dotnet_diagnostic.SA1310.severity = none
+# The name of a static readonly field does not begin with an upper-case letter
+dotnet_diagnostic.SA1311.severity = none
+# The name of a variable in C# does not begin with a lower-case letter
+# -> Already handled by IDE1006.
+dotnet_diagnostic.SA1312.severity = none
+# The name of a parameter in C# does not begin with a lower-case letter
+# -> Already handled by IDE1006.
+dotnet_diagnostic.SA1313.severity = none
+# The name of a C# type parameter does not begin with the capital letter T
+# -> Already handled by CA1715.
+dotnet_diagnostic.SA1314.severity = none
+# Element names within a tuple type should have the correct casing
+dotnet_diagnostic.SA1316.severity = error
+# The access modifier for a C# element has not been explicitly defined
+# -> Already handled by IDE0040.
+dotnet_diagnostic.SA1400.severity = none
+# A field within a C# class has an access modifier other than private
+dotnet_diagnostic.SA1401.severity = none
+# A C# code file contains more than one unique type
+dotnet_diagnostic.SA1402.severity = warning
+# A C# code file contains more than one namespace
+dotnet_diagnostic.SA1403.severity = warning
+# A Code Analysis SuppressMessage attribute does not include a justification
+dotnet_diagnostic.SA1404.severity = none
+# A call to Debug.Assert in C# code does not include a descriptive message
+dotnet_diagnostic.SA1405.severity = none
+# A call to Debug.Fail in C# code does not include a descriptive message
+dotnet_diagnostic.SA1406.severity = none
+# A C# statement contains a complex arithmetic expression which omits parenthesis around operators
+# -> Already handled by dotnet_style_parentheses_in_arithmetic_binary_operators/IDE0047/IDE0048.
+dotnet_diagnostic.SA1407.severity = none
+# A C# statement contains a complex conditional expression which omits parenthesis around operators
+dotnet_diagnostic.SA1408.severity = warning
+# DEPRECATED: A C# file contains code which is unnecessary and can be removed without changing the overall logic of the code
+dotnet_diagnostic.SA1409.severity = none
+# A call to a C# anonymous method does not contain any method parameters, yet the statement still includes parenthesis
+dotnet_diagnostic.SA1410.severity = warning
+# An attribute declaration does not contain any parameters, yet it still includes parenthesis
+dotnet_diagnostic.SA1411.severity = warning
+# The encoding of the file is not UTF-8 with byte order mark
+dotnet_diagnostic.SA1412.severity = error
+# A multi-line initializer should use a comma on the last item
+dotnet_diagnostic.SA1413.severity = none
+# Tuple types appearing in member declarations should have explicitly named tuple elements
+# -> Disabled because it can't be deactivated for private members.
+dotnet_diagnostic.SA1414.severity = none
+# The opening or closing brace within a C# statement, element, or expression is not placed on its own line
+dotnet_diagnostic.SA1500.severity = warning
+# A C# statement containing opening and closing braces is written completely on a single line
+dotnet_diagnostic.SA1501.severity = warning
+# A C# element containing opening and closing braces is written completely on a single line
+dotnet_diagnostic.SA1502.severity = suggestion
+# The opening and closing braces for a C# statement have been omitted
+dotnet_diagnostic.SA1503.severity = none
+# Within a C# property, indexer or event, at least one of the child accessors is written on a single line, and at least one of the child accessors is written across multiple lines
+dotnet_diagnostic.SA1504.severity = none
+# An opening brace within a C# element, statement, or expression is followed by a blank line
+dotnet_diagnostic.SA1505.severity = warning
+# An element documentation header above a C# element is followed by a blank line
+dotnet_diagnostic.SA1506.severity = warning
+# The C# code contains multiple blank lines in a row
+dotnet_diagnostic.SA1507.severity = warning
+# A closing brace within a C# element, statement, or expression is preceded by a blank line
+dotnet_diagnostic.SA1508.severity = warning
+# An opening brace within a C# element, statement, or expression is preceded by a blank line
+dotnet_diagnostic.SA1509.severity = warning
+# Chained C# statements are separated by a blank line
+dotnet_diagnostic.SA1510.severity = warning
+# The while footer at the bottom of a do-while statement is separated from the statement by a blank line
+dotnet_diagnostic.SA1511.severity = warning
+# A single-line comment within C# code is followed by a blank line
+dotnet_diagnostic.SA1512.severity = suggestion
+# A closing brace within a C# element, statement, or expression is not followed by a blank line
+dotnet_diagnostic.SA1513.severity = none
+# An element documentation header above a C# element is not preceded by a blank line
+dotnet_diagnostic.SA1514.severity = warning
+# A single-line comment within C# code is not preceded by a blank line
+dotnet_diagnostic.SA1515.severity = none
+# Adjacent C# elements are not separated by a blank line
+# -> Can't be enabled because of single-line properties.
+dotnet_diagnostic.SA1516.severity = none
+# The code file has blank lines at the start
+dotnet_diagnostic.SA1517.severity = warning
+# The line endings at the end of a file do not match the settings for the project
+dotnet_diagnostic.SA1518.severity = warning
+# The opening and closing braces for a multi-line C# statement have been omitted
+dotnet_diagnostic.SA1519.severity = none
+# The opening and closing braces of a chained if/else if/else construct were included for some clauses, but omitted for others
+dotnet_diagnostic.SA1520.severity = none
+# A C# code element is missing a documentation header
+dotnet_diagnostic.SA1600.severity = none
+# A C# partial element is missing a documentation header
+dotnet_diagnostic.SA1601.severity = none
+# An item within a C# enumeration is missing an Xml documentation header
+dotnet_diagnostic.SA1602.severity = none
+# DEPRECATED: The Xml within a C# element's document header is badly formed
+dotnet_diagnostic.SA1603.severity = none
+# The Xml header documentation for a C# element is missing a <summary> tag
+dotnet_diagnostic.SA1604.severity = none
+# The <summary> or <content> tag within the documentation header for a C# code element is missing or empty
+dotnet_diagnostic.SA1605.severity = none
+# The <summary> tag within the documentation header for a C# code element is empty
+dotnet_diagnostic.SA1606.severity = none
+# The <summary> or <content> tag within the documentation header for a C# code element is empty
+dotnet_diagnostic.SA1607.severity = none
+# The <summary> tag within an element's Xml header documentation contains the default text generated by Visual Studio during the creation of the element
+dotnet_diagnostic.SA1608.severity = none
+# The Xml header documentation for a C# property does not contain a <value> tag
+dotnet_diagnostic.SA1609.severity = none
+# The Xml header documentation for a C# property contains an empty <value> tag
+dotnet_diagnostic.SA1610.severity = none
+# A C# method, constructor, delegate or indexer element is missing documentation for one or more of its parameters
+dotnet_diagnostic.SA1611.severity = none
+# The documentation describing the parameters to a C# method, constructor, delegate or indexer element does not match the actual parameters on the element
+dotnet_diagnostic.SA1612.severity = none
+# A <param> tag within a C# element's documentation header is missing a name attribute containing the name of the parameter
+dotnet_diagnostic.SA1613.severity = none
+# A <param> tag within a C# element's documentation header is empty
+dotnet_diagnostic.SA1614.severity = none
+# A C# element is missing documentation for its return value
+dotnet_diagnostic.SA1615.severity = none
+# The <returns> tag within a C# element's documentation header is empty
+dotnet_diagnostic.SA1616.severity = none
+# A C# code element does not contain a return value, or returns void, but the documentation header for the element contains a <returns> tag
+dotnet_diagnostic.SA1617.severity = none
+# A generic C# element is missing documentation for one or more of its generic type parameters
+dotnet_diagnostic.SA1618.severity = none
+# A generic, partial C# element is missing documentation for one or more of its generic type parameters, and the documentation for the element contains a <summary> tag
+dotnet_diagnostic.SA1619.severity = none
+# The <typeparam> tags within the Xml header documentation for a generic C# element do not match the generic type parameters on the element
+dotnet_diagnostic.SA1620.severity = none
+# A <typeparam> tag within the Xml header documentation for a generic C# element is missing a name attribute, or contains an empty name attribute
+dotnet_diagnostic.SA1621.severity = none
+# A <typeparam> tag within the Xml header documentation for a generic C# element is empty
+dotnet_diagnostic.SA1622.severity = none
+# The documentation text within a C# property's <summary> tag does not match the accessors within the property
+dotnet_diagnostic.SA1623.severity = none
+# The documentation text within a C# property's <summary> tag takes into account all of the accessors within the property, but one of the accessors has limited access
+dotnet_diagnostic.SA1624.severity = none
+# The Xml documentation for a C# element contains two or more identical entries, indicating that the documentation has been copied and pasted
+dotnet_diagnostic.SA1625.severity = none
+# The C# code contains a single-line comment which begins with three forward slashes in a row
+dotnet_diagnostic.SA1626.severity = none
+# The Xml header documentation for a C# code element contains an empty tag
+dotnet_diagnostic.SA1627.severity = none
+# DEPRECATED: A section of the Xml header documentation for a C# element does not begin with a capital letter
+dotnet_diagnostic.SA1628.severity = none
+# A section of the Xml header documentation for a C# element does not end with a period (also known as a full stop)
+dotnet_diagnostic.SA1629.severity = none
+# DEPRECATED: A section of the Xml header documentation for a C# element does not contain any whitespace between words
+dotnet_diagnostic.SA1630.severity = none
+# DEPRECATED: A section of the Xml header documentation for a C# element does not contain enough alphabetic characters
+dotnet_diagnostic.SA1631.severity = none
+# DEPRECATED: Documentation text should meet minimum character length
+dotnet_diagnostic.SA1632.severity = none
+# A C# code file is missing a standard file header
+dotnet_diagnostic.SA1633.severity = none
+# The file header at the top of a C# code file is missing a copyright tag
+dotnet_diagnostic.SA1634.severity = none
+# The file header at the top of a C# code file is missing copyright text
+dotnet_diagnostic.SA1635.severity = none
+# The file header at the top of a C# code file does not contain the appropriate copyright text
+dotnet_diagnostic.SA1636.severity = none
+# The file header at the top of a C# code file is missing the file name
+dotnet_diagnostic.SA1637.severity = none
+# The file tag within the file header at the top of a C# code file does not contain the name of the file
+dotnet_diagnostic.SA1638.severity = none
+# The file header at the top of a C# code file does not contain a filled-in summary tag
+dotnet_diagnostic.SA1639.severity = none
+# The file header at the top of a C# code file does not contain company name text
+dotnet_diagnostic.SA1640.severity = none
+# The file header at the top of a C# code file does not contain the appropriate company name text
+dotnet_diagnostic.SA1641.severity = none
+# The XML documentation header for a C# constructor does not contain the appropriate summary text
+dotnet_diagnostic.SA1642.severity = none
+# The Xml documentation header for a C# finalizer does not contain the appropriate summary text
+dotnet_diagnostic.SA1643.severity = none
+# DEPRECATED: A section within the Xml documentation header for a C# element contains blank lines
+dotnet_diagnostic.SA1644.severity = none
+# DEPRECATED: An included Xml documentation file does not exist
+dotnet_diagnostic.SA1645.severity = none
+# DEPRECATED: An included Xml documentation link contains an invalid path
+dotnet_diagnostic.SA1646.severity = none
+# DEPRECATED: An include tag within an Xml documentation header does not contain valid file and path attribute
+dotnet_diagnostic.SA1647.severity = none
+# <inheritdoc> has been used on an element that doesn't inherit from a base class or implement an interface
+dotnet_diagnostic.SA1648.severity = none
+# The file name of a C# code file does not match the first type declared in the file
+dotnet_diagnostic.SA1649.severity = error
+# DEPRECATED: The element documentation for the element contains one or more spelling mistakes or unrecognized words
+dotnet_diagnostic.SA1650.severity = none
+# The documentation for the element contains one or more <placeholder> elements
+dotnet_diagnostic.SA1651.severity = none
+# UNPORTED: This rule was moved to SA0001
+dotnet_diagnostic.SA1652.severity = none
+# A call to an instance member of the local class or a base class is prefixed with 'this.', within a C# code file
+# -> Already handled by IDE0003.
+dotnet_diagnostic.SX1101.severity = none
+# A field name does not begin with an underscore
+# -> Already handled by IDE1006.
+dotnet_diagnostic.SX1309.severity = none
+# A static field name does not begin with an underscore
+# -> Already handled by IDE1006.
+dotnet_diagnostic.SX1309S.severity = none
+
+
+###############################################################
+# This section is for ReSharper/Rider specific settings only. #
+###############################################################
+# The documentation for using the .editorconfig in ReSharper/Rider is here:
+# https://www.jetbrains.com/help/resharper/Using_EditorConfig.html
+# The documentation for all rules is here:
+# https://www.jetbrains.com/help/rider/EditorConfig_Index.html
+
+# There's no correlating .editorconfig rule for this but it's the default setting in Visual Studio which apparently can't be changed at the moment.
+# https://www.jetbrains.com/help/rider/EditorConfig_CSHARP_SpacesPageSchema.html#resharper_csharp_space_within_single_line_array_initializer_braces
+resharper_space_within_single_line_array_initializer_braces = true
+# There's no correlating .editorconfig rule for this but it's the default setting in Visual Studio which apparently can't be changed at the moment.
+# https://www.jetbrains.com/help/rider/EditorConfig_CSHARP_LineBreaksPageSchema.html#resharper_csharp_place_accessorholder_attribute_on_same_line
+resharper_place_accessorholder_attribute_on_same_line = false
+# The apparent default setting of 80 characters is a bit too low in these 4K/8K screen resolution times.
+# https://www.jetbrains.com/help/rider/EditorConfig_CSHARP_LineBreaksPageSchema.html#resharper_csharp_max_line_length
+resharper_csharp_max_line_length = 180
